@@ -1,0 +1,17 @@
+
+<ion-content padding>
+    <ion-list>
+
+        <ion-item>
+          <ion-label fixed>E-mail</ion-label>
+          <ion-input type="text" [(ngModel)]="form.email"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label fixed>Senha</ion-label>
+          <ion-input type="password" [(ngModel)]="form.password"></ion-input>
+        </ion-item>
+        <button ion-button block color="primary" class="marginTop" (click)="login()">Login</button>
+        <a href="#" (click)="signup()">Registro</a>
+      </ion-list>
+</ion-content>
