@@ -7,28 +7,65 @@
 </ion-header>
 
 <ion-content padding>
-
   <ion-list>
-      <ion-item>
-        <ion-label>Data Lançto</ion-label>
-        <ion-datetime displayFormat="YYYY MMM DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="form.date_launch"></ion-datetime>
-      </ion-item>
-      <ion-item>
+    <ion-item>
+      <ion-label>Categoria</ion-label>
+      <ion-select [(ngModel)]="form.category_id" interface="action-sheet">
+        <ion-option *ngFor="let item of categories" [value]="item.id"
+          >{{item.name}}</ion-option
+        >
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Data Lançto</ion-label>
+      <ion-datetime
+        displayFormat="YYYY MMM DD"
+        pickerFormat="YYYY-MM-DD"
+        [(ngModel)]="form.date_launch"
+      ></ion-datetime>
+    </ion-item>
+    <ion-item>
       <ion-label fixed>Nome</ion-label>
       <ion-input type="text" [(ngModel)]="form.name"></ion-input>
-      </ion-item>
-      <ion-item>
+    </ion-item>
+    <ion-item>
       <ion-label fixed>Valor</ion-label>
       <ion-input type="text" [(ngModel)]="form.value"></ion-input>
-      </ion-item>
-      <button ion-button block color="primary" class="marginTop" (click)="save()"  *ngIf="!editable">Salvar</button>
-      <button ion-button block color="primary" class="marginTop" (click)="update()" *ngIf="editable">Alterar</button>
+    </ion-item>
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-select [(ngModel)]="form.status" interface="action-sheet">
+        <ion-option [value]="1">Recebido</ion-option>
+        <ion-option [value]="0">Não Recebido</ion-option>
+      </ion-select>
+    </ion-item>
+    <button
+      ion-button
+      block
+      color="primary"
+      class="marginTop"
+      (click)="save()"
+      *ngIf="!editable"
+    >
+      Salvar
+    </button>
+    <button
+      ion-button
+      block
+      color="primary"
+      class="marginTop"
+      (click)="update()"
+      *ngIf="editable"
+    >
+      Alterar
+    </button>
   </ion-list>
 
-  <ion-card *ngFor="let item of billreceives" >
+  <ion-card *ngFor="let item of billreceives">
     <ion-card-content>
       <ion-card-title>
-        {{item.name}}
+        {{item.category.name}}
+        <p>{{item.name}}</p>
       </ion-card-title>
       <p>
         {{item.date_launch}}
@@ -36,20 +73,34 @@
       <p>
         {{item.value}}
       </p>
+      <p>Status: {{ item.status == '1' ? 'Recebido' : 'Não Recebido'}}</p>
     </ion-card-content>
 
     <ion-row no-padding>
       <ion-col>
-        <button ion-button clear small color="primary" icon-start (click)="edit(item.id)">
+        <button
+          ion-button
+          clear
+          small
+          color="primary"
+          icon-start
+          (click)="edit(item.id)"
+        >
           Editar
         </button>
       </ion-col>
       <ion-col text-center>
-        <button ion-button clear small color="danger" icon-start (click)="del(item.id)">
+        <button
+          ion-button
+          clear
+          small
+          color="danger"
+          icon-start
+          (click)="presentConfirm(item.id)"
+        >
           Excluir
         </button>
       </ion-col>
     </ion-row>
-
   </ion-card>
 </ion-content>

@@ -4,24 +4,52 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding id="home">
   <h2>Bem vindo ao Gestor de Finanças</h2>
-  <button ion-button color="primary" class="marginTop" (click)="logout()">Logout</button>
+  <button
+    ion-button
+    color="primary"
+    class="marginTop"
+    (click)="presentConfirm()"
+  >
+    Logout
+  </button>
   <h2>Gráfico</h2>
   <ion-list>
     <ion-item>
       <ion-label>Data Inicio</ion-label>
-      <ion-datetime displayFormat="YYYY MMM DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="form.dateStart"></ion-datetime>
+      <ion-datetime
+        displayFormat="YYYY MMM DD"
+        pickerFormat="YYYY-MM-DD"
+        [(ngModel)]="form.dateStart"
+      ></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Data Fim</ion-label>
-      <ion-datetime displayFormat="YYYY MMM DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="form.dateEnd"></ion-datetime>
+      <ion-datetime
+        displayFormat="YYYY MMM DD"
+        pickerFormat="YYYY-MM-DD"
+        [(ngModel)]="form.dateEnd"
+      ></ion-datetime>
     </ion-item>
-    <button ion-button block color="primary" class="marginTop" (click)="submit()">Consultar</button>
+    <button
+      ion-button
+      block
+      color="primary"
+      class="marginTop"
+      (click)="submit()"
+    >
+      Consultar
+    </button>
   </ion-list>
   <ion-card>
     <ion-card-content>
-      <div id="container" style="display: block;"></div>
+      <div id="categoriesPay" style="display: block;"></div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <div id="categoriesReceive" style="display: block;"></div>
     </ion-card-content>
   </ion-card>
 </ion-content>

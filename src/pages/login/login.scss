@@ -1,3 +1,31 @@
 page-login {
+  #login {
+    background: color($colors, secondary);
 
+    .header {
+      text-align: center;
+      h1 {
+        font-size: 52px;
+        margin-top: 50px;
+      }
+    }
+
+    .list {
+      margin-top: 50px;
+
+      .link-register,
+      .link-forget {
+        color: white;
+        text-decoration: none;
+      }
+
+      .link-register {
+        font-size: 25px;
+      }
+
+      .link-forget {
+        font-size: 18px;
+      }
+    }
+  }
 }

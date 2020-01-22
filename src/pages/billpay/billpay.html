@@ -1,37 +1,67 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contar a Receber
+      Contar a Pagar
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
   <ion-list>
-      <ion-item>
-        <ion-label>Categoria</ion-label>
-        <ion-select [(ngModel)]="form.category_id" interface="action-sheet">
-          <ion-option *ngFor="let item of categories" [value]="item.id">{{item.name}}</ion-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-label>Data Lançto</ion-label>
-        <ion-datetime displayFormat="YYYY MMM DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="form.date_launch"></ion-datetime>
-      </ion-item>
-      <ion-item>
+    <ion-item>
+      <ion-label>Categoria</ion-label>
+      <ion-select [(ngModel)]="form.category_id" interface="action-sheet">
+        <ion-option *ngFor="let item of categories" [value]="item.id"
+          >{{item.name}}</ion-option
+        >
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Data Lançto</ion-label>
+      <ion-datetime
+        displayFormat="YYYY MMM DD"
+        pickerFormat="YYYY-MM-DD"
+        [(ngModel)]="form.date_launch"
+      ></ion-datetime>
+    </ion-item>
+    <ion-item>
       <ion-label fixed>Nome</ion-label>
       <ion-input type="text" [(ngModel)]="form.name"></ion-input>
-      </ion-item>
-      <ion-item>
+    </ion-item>
+    <ion-item>
       <ion-label fixed>Valor</ion-label>
       <ion-input type="text" [(ngModel)]="form.value"></ion-input>
-      </ion-item>
-      <button ion-button block color="primary" class="marginTop" (click)="save()"  *ngIf="!editable">Salvar</button>
-      <button ion-button block color="primary" class="marginTop" (click)="update()" *ngIf="editable">Alterar</button>
+    </ion-item>
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-select [(ngModel)]="form.status" interface="action-sheet">
+        <ion-option [value]="1">Pago</ion-option>
+        <ion-option [value]="0">Não Pago</ion-option>
+      </ion-select>
+    </ion-item>
+    <button
+      ion-button
+      block
+      color="primary"
+      class="marginTop"
+      (click)="save()"
+      *ngIf="!editable"
+    >
+      Salvar
+    </button>
+    <button
+      ion-button
+      block
+      color="primary"
+      class="marginTop"
+      (click)="update()"
+      *ngIf="editable"
+    >
+      Alterar
+    </button>
   </ion-list>
 
-  <ion-card *ngFor="let item of bill_pays" >
+  <ion-card *ngFor="let item of bill_pays">
     <ion-card-content>
       <ion-card-title>
         {{item.category.name}}
@@ -43,20 +73,34 @@
       <p>
         {{item.value}}
       </p>
+      <p>Status: {{ item.status == '1' ? 'Pago' : 'Não Pago'}}</p>
     </ion-card-content>
 
     <ion-row no-padding>
       <ion-col>
-        <button ion-button clear small color="primary" icon-start (click)="edit(item.id)">
+        <button
+          ion-button
+          clear
+          small
+          color="primary"
+          icon-start
+          (click)="edit(item.id)"
+        >
           Editar
         </button>
       </ion-col>
       <ion-col text-center>
-        <button ion-button clear small color="danger" icon-start (click)="del(item.id)">
+        <button
+          ion-button
+          clear
+          small
+          color="danger"
+          icon-start
+          (click)="presentConfirm(item.id)"
+        >
           Excluir
         </button>
       </ion-col>
     </ion-row>
-
   </ion-card>
 </ion-content>

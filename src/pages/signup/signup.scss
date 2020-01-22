@@ -1,3 +1,23 @@
 page-signup {
+  #register {
+    background: color($colors, secondary);
 
+    .header {
+      text-align: center;
+      h1 {
+        font-size: 52px;
+        margin-top: 50px;
+      }
+    }
+
+    .list {
+      margin-top: 50px;
+
+      > a {
+        font-size: 25px;
+        color: white;
+        text-decoration: none;
+      }
+    }
+  }
 }
