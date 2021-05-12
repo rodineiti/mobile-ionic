@@ -33,7 +33,7 @@
     "@ionic/angular": "^4.7.1",
     "@types/highcharts": "^5.0.22",
     "angular-highcharts": "^6.1.4",
-    "chart.js": "^2.7.2",
+    "chart.js": "^2.9.4",
     "highcharts": "^6.1.0",
     "ionicons": "3.0.0",
     "rxjs": "~6.5.1",
